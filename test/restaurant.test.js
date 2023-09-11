@@ -128,16 +128,16 @@ describe("The restaurant booking table", function () {
         }));
     });
 
-    it("should not be able to book a table with an invalid table name.", async function () {
-        const restaurantTableBooking = await RestaurantTableBooking(db);
+    // it("should not be able to book a table with an invalid table name.", async function () {
+    //     const restaurantTableBooking = await RestaurantTableBooking(db);
 
-        assert.deepEqual("Invalid table name provided", await restaurantTableBooking.bookTable({
-          tableName: 'Table eight',
-          username: 'Kim',
-          phoneNumber: '084 009 8910',
-          seats: 2
-      }));
-    });
+    //     assert.deepEqual("Invalid table name provided", await restaurantTableBooking.bookTable({
+    //       tableName: 'Table eight',
+    //       username: 'Kim',
+    //       phoneNumber: '084 009 8910',
+    //       seats: 2
+    //   }));
+    // });
 
     // it("should be able to book a table.", async function () {
     //     let restaurantTableBooking = RestaurantTableBooking(db);

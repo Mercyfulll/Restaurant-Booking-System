@@ -45,11 +45,9 @@ const restaurant = (db) => {
            return 'seats greater than the capacity'
         }
                 // if (nameInInfo && nameOfTable && contact && tableCapacity > bookingSeats ){
-        //     await db.none(` UPDATE table_booking
-        //                     SET
-        //                     username = $1,
-        //                     number_of_people = $2,
-        //                     contact_number = $3,
+        //     await db.none(` INSERT INTO table_booking (username,number_of_people,contact_number )
+        //                     VALUES
+        //                     ($1,$2,$3)
         //                     booked = 't'
         //                     WHERE
         //                     table_name = $4

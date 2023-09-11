@@ -29,13 +29,24 @@ const handlebarSetup = exphbs.engine({
 app.engine('handlebars', handlebarSetup);
 app.set('view engine', 'handlebars');
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     
     res.render('index', { tables : rest.getTables})
 });
 
-
-app.get("/bookings", (req, res) => {
+app.post("/book", async (req, res) =>{
+    let number = req.body.booking_size
+    let name = req.body.username
+    let contact = req.body.phone_number
+    let details = {
+        username: name,
+        phoneNumber:contact,
+        seats:number
+    }
+    
+    res.render("index",rest.bookTable(details))
+})
+app.get("/bookings", async (req, res) => {
     res.render('bookings', { tables : [{}, {}, {}, {}, {}, {}]})
 });
 
