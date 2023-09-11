@@ -80,7 +80,7 @@ describe("The restaurant booking table", function () {
     });
 
 
-    it("It should check if the capacity is not greater than the available seats.", async function () {
+    it("It should check that the seats requested should not be greater than capacity.", async function () {
         const restaurantTableBooking = await RestaurantTableBooking(db);
 
         const result = await restaurantTableBooking.bookTable({
@@ -90,18 +90,22 @@ describe("The restaurant booking table", function () {
             seats: 3
         });
 
-        assert.deepEqual("capacity greater than the table seats", result);
+        assert.deepEqual("seats greater than the capacity", result);
     });
 
-//     it("should check if there are available seats for a booking.", async function () {
-//         const restaurantTableBooking = await RestaurantTableBooking(db);
+    it("should check if there are available seats for a booking.", async function () {
+        const restaurantTableBooking = await RestaurantTableBooking(db);
 
-//         // get all the tables
+        // get all the tables
+        let getAllTables = await restaurantTableBooking.getAllTables()
+        
+        // loop over the tables and see if there is a table that is not booked
+       let bookedTables = await restaurantTableBooking.getBookedTables()
 
-//         // loop over the tables and see if there is a table that is not booked
+        assert.deepEqual(true, getAllTables);
+        assert.deepEqual(false, bookedTables);
 
-//         assert.deepEqual(true, false);
-//     });
+    });
 
 //     it("Check if the booking has a user name provided.", async function () {
 //         const restaurantTableBooking = await RestaurantTableBooking(db);

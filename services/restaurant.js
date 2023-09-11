@@ -1,17 +1,39 @@
+
 const restaurant = (db) => {
 
     async function getTables() {
-        // get all the available tables
-        return await db.manyOrNone('SELECT * FROM table_booking') 
+      
+            // get all the available tables
+             return await db.manyOrNone('SELECT * FROM table_booking') 
+
+    }
+    async function getAllTables(){
+        let allTables = await db.manyOrNone('SELECT * FROM table_booking') 
+
+        if(allTables.length === 6){
+            return true
+        }
     }
 
-    // async function bookTable(tableName) {
-    //     // book a table by name
-    // }
+    async function bookTable(tableName) {
+        let tableCapacityObj = await db.oneOrNone('SELECT capacity FROM table_booking WHERE table_name = $1', [tableName.tableName])
+        let tableCapacity = tableCapacityObj.capacity
+        let bookingSeats = tableName.seats
+        
+            // book a table by name
+        if(bookingSeats > tableCapacity){
+            return 'seats greater than the capacity'
+        }
+    }
 
-    // async function getBookedTables() {
-    //     // get all the booked tables
-    // }
+    async function getBookedTables() {
+        // get all the booked tables
+        let booked = await db.manyOrNone(` SELECT * FROM table_booking WHERE booked = 't'`)
+        if(booked.length <= 0){
+            return false
+        }
+
+    }
 
     // async function isTableBooked(tableName) {
     //     // get booked table by name
@@ -21,14 +43,16 @@ const restaurant = (db) => {
     //     // cancel a table by name
     // }
 
-    // async function getBookedTablesForUser(username) {
-    //     // get user table booking
-    // }
+    async function getBookedTablesForUser(username) {
+        // get user table booking
+        return await db.manyOrNone()
+    }
 
     return {
         getTables,
-        // bookTable,
-        // getBookedTables,
+        bookTable,
+        getBookedTables,
+        getAllTables,
         // isTableBooked,
         // cancelTableBooking,
         // editTableBooking,
