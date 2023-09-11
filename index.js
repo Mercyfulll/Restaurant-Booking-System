@@ -7,7 +7,7 @@ import flash from "flash-express";
 const app = express()
 const pgp = pgPromise()
 
-var connectionString = process.env.DATABASE_URL || 'postgres://zuovmndx:KGDKBX7JCdk5zlRNdEbihBOrRGmZFTj5@tai.db.elephantsql.com/zuovmndx'
+var connectionString = process.env.DATABASE_URL || 'postgres://zuovmndx:KGDKBX7JCdk5zlRNdEbihBOrRGmZFTj5@tai.db.elephantsql.com/zuovmndxssl=true'
 
 const db = pgp(connectionString);
 

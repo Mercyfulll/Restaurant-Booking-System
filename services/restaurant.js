@@ -19,10 +19,14 @@ const restaurant = (db) => {
         let tableCapacityObj = await db.oneOrNone('SELECT capacity FROM table_booking WHERE table_name = $1', [tableName.tableName])
         let tableCapacity = tableCapacityObj.capacity
         let bookingSeats = tableName.seats
+        let nameInInfo = tableName.username
         
             // book a table by name
         if(bookingSeats > tableCapacity){
-            return 'seats greater than the capacity'
+             'seats greater than the capacity'
+        }
+        else if(!nameInInfo){
+             'Please enter a username'
         }
     }
 

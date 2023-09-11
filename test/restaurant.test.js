@@ -103,18 +103,20 @@ describe("The restaurant booking table", function () {
        let bookedTables = await restaurantTableBooking.getBookedTables()
 
         assert.deepEqual(true, getAllTables);
-        assert.deepEqual(false, bookedTables);
+        assert.deepEqual(false, bookedTables);       
 
     });
 
-//     it("Check if the booking has a user name provided.", async function () {
-//         const restaurantTableBooking = await RestaurantTableBooking(db);
-//         assert.deepEqual("Please enter a username", await restaurantTableBooking.bookTable({
-//             tableName: 'Table eight',
-//             phoneNumber: '084 009 8910',
-//             seats: 2
-//         }));
-//     });
+    it("Check if the booking has a user name provided.", async function () {
+        const restaurantTableBooking = await RestaurantTableBooking(db);
+
+
+        assert.deepEqual("Please enter a username", await restaurantTableBooking.bookTable({
+            tableName: 'Table eight',
+            phoneNumber: '084 009 8910',
+            seats: 2
+        }));
+    });
 
 //     it("Check if the booking has a contact number provided.", async function () {
 //         const restaurantTableBooking = await RestaurantTableBooking(db);
