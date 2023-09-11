@@ -101,8 +101,10 @@ const restaurant = (db) => {
     async function isTableBooked(tableName) {
         // get booked table by name
         let booked = await db.oneOrNone(`SELECT * FROM table_booking WHERE booked = 't'`,[tableName])
-        if(booked){
-            
+        if(booked.length > 0){
+            return true
+        }else{
+            return false
         }
 
     }
