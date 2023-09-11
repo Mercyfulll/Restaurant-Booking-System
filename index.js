@@ -3,13 +3,16 @@ import pgPromise from "pg-promise";
 import exphbs from "express-handlebars";
 import bodyParser from "body-parser";
 import flash from "flash-express";
+import restaurant from "./services/restaurant.js";
 
 const app = express()
 const pgp = pgPromise()
 
-var connectionString = process.env.DATABASE_URL || 'postgres://zuovmndx:KGDKBX7JCdk5zlRNdEbihBOrRGmZFTj5@tai.db.elephantsql.com/zuovmndxssl=true'
+
+var connectionString = process.env.DATABASE_URL || 'postgres://zuovmndx:KGDKBX7JCdk5zlRNdEbihBOrRGmZFTj5@tai.db.elephantsql.com/zuovmndx?ssl=true'
 
 const db = pgp(connectionString);
+const rest = restaurant(db)
 
 app.use(express.static('public'));
 app.use(flash());
@@ -27,8 +30,8 @@ app.engine('handlebars', handlebarSetup);
 app.set('view engine', 'handlebars');
 
 app.get("/", (req, res) => {
-
-    res.render('index', { tables : [{}, {}, {booked : true}, {}, {}, {}]})
+    
+    res.render('index', { tables : rest.getTables})
 });
 
 

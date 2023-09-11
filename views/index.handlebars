@@ -3,6 +3,7 @@
     <h2 class="title is-2">Book a table</h2>
 
     <div class="notification is-danger is-light">
+
         {{!-- you can remove the button below if you want --}}
         <button class="delete"></button>
         Error Flash messages goes here...
@@ -23,7 +24,7 @@
         <div class="column">
             <div class="panel">
                 <p class="panel-heading">
-                    Table XYZ
+                    {{this.table_name}}
                 </p>
                 <div class="panel-block">
                     <div class="field is-horizontal">
@@ -42,7 +43,8 @@
                         <div class="field-body">
                             <div class="field">
                                 <p class="control">
-                                    <input class="input is-static" type="email" value="5" readonly>
+                                    <input class="input is-static" type="email" value="{{this.capacity}}" readonly>
+                                    {{this.capacity}}
                                 </p>
                             </div>
                         </div>
